@@ -1,0 +1,40 @@
+<mat-toolbar style="background-color: whitesmoke; height: 50px">
+  <span>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/course"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon class="check-icon">check</mat-icon>
+      Course
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      [routerLink]="'/course-details'"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon class="check-icon">check</mat-icon>
+      Course Details
+    </button>
+    <button
+    mat-raised-button
+    color="accent"
+    [routerLink]="'/docs'"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon class="check-icon">check</mat-icon>
+      Documentation
+    </button>
+  </span>
+</mat-toolbar>
+
+<div
+  class="container"
+
+>
+  <router-outlet></router-outlet>
+</div>

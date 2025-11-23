@@ -1,0 +1,17 @@
+/* Target Material-raised buttons specifically and increase specificity */
+
+
+button .check-icon {
+  display: none;
+  margin-right: 8px;
+}
+button.active {
+  background-color: green;
+  color: #fff;
+}
+button.active .check-icon {
+  display: inline-flex;
+  color: #fff;
+  font-weight: 700;
+}
+
