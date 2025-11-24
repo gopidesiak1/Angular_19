@@ -7,11 +7,11 @@ import { PageNotfoundComponent } from './components/page-notfound/page-notfound.
 import { SelectedCourseComponent } from './components/selected-course/selected-course.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     redirectTo: '/header',
-    //     pathMatch: 'full'
-    // },
+    {
+        path: '',
+        redirectTo: '/course',
+        pathMatch: 'full'
+    },
     // {
     //     path: 'header',
     //     component: HeaderComponent
@@ -19,8 +19,13 @@ export const routes: Routes = [
     {
         path: 'course',
         component: CourseComponent
-    }, {
+    }, 
+    {
         path: 'course-details',
+        component: CourseDetailsComponent
+    },
+    {
+        path: 'course-details/:id',
         component: CourseDetailsComponent
     },
     {
@@ -29,6 +34,10 @@ export const routes: Routes = [
     },
     {
         path:'selected-course/:course',
+        component:SelectedCourseComponent
+    },
+    {
+        path:'selected-course',
         component:SelectedCourseComponent
     },
     {
