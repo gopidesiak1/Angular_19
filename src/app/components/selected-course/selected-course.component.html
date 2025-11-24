@@ -15,8 +15,9 @@
       </div>
     </div>
     <div class="card-footer">
-      <button mat-button (click)="goBack()">Go Back
-      </button>
+      <button mat-button style="color: black; background-color: white;" (click)="goBack()">Go Back </button>
+      <button mat-button color="warn" (click)="ViewDetails()">View Details</button>
       </div>
   </div>
+  <router-outlet></router-outlet>
 </div>

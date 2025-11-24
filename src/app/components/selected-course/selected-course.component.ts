@@ -1,12 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-selected-course',
-  imports: [],
+  imports: [RouterModule,MatButtonModule],
   templateUrl: './selected-course.component.html',
-  styleUrl: './selected-course.component.css'
+  styleUrl: './selected-course.component.css',
+  preserveWhitespaces: true
 })
 export class SelectedCourseComponent implements OnInit{
    
@@ -22,7 +24,7 @@ export class SelectedCourseComponent implements OnInit{
 
     // route params
 
-    /*this._activatedRoute.paramMap.subscribe((p) => {
+    this._activatedRoute.paramMap.subscribe((p) => {
       const courseParam = p.get('course');
       if (!courseParam) {
         this.myCourse = null;
@@ -35,7 +37,7 @@ export class SelectedCourseComponent implements OnInit{
         console.error('Failed to parse course param JSON:', err);
         this.myCourse = null;
       }
-    });  */
+    });  
 
 
     // old style  Query params
@@ -57,7 +59,7 @@ export class SelectedCourseComponent implements OnInit{
 
     // new style
 
-  this._activatedRoute.queryParamMap.subscribe((p) => {
+  /*this._activatedRoute.queryParamMap.subscribe((p) => {
       const courseParam=p.get('selectedCourse')
       if (!courseParam) {
         this.myCourse = null;
@@ -70,15 +72,21 @@ export class SelectedCourseComponent implements OnInit{
         console.error('Failed to parse course param JSON:', err);
         this.myCourse = null;
       }
-    }); 
+    });  */
 
     
     
   }
 
   goBack(){
-   this._router.navigate(['course-details',this.myCourse.id])
+   this._router.navigate(['/course-details',this.myCourse.id])
+  }
+
+  ViewDetails(){
+     this._router.navigate(['selectedCourseDetails'],
+      {relativeTo:this._activatedRoute})
+     }
+
   }
 
 
-}

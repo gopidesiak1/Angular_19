@@ -45,15 +45,15 @@ export class CourseDetailsComponent implements OnInit {
   onSelect(course: Course){
     console.log("selected course.",course)
     // route params
-     //this._router.navigate(['/selected-course',JSON.stringify(course)])
+     this._router.navigate(['/selected-course',JSON.stringify(course)])
 
     // Query params
-    this._router.navigate(['selected-course'],{
+    /*this._router.navigate(['/selected-course'],{
       queryParams:
       {
         selectedCourse:JSON.stringify(course)
       }
-    }) 
+    })  */
 
    }
 }
