@@ -1,0 +1,17 @@
+<div class="container">
+<h4 style="color: white; background-color: black;">Home Component</h4>
+
+<div class="mt-4">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Enter Something...</mat-label>
+        <input matInput #input placeholder="Enter Something ....">
+    </mat-form-field>
+
+</div>
+ <div>
+    <button mat-stroked-button color="warn" (click)="onClick(input.value)">Click Me</button>
+  </div>
+  <app-demo [message]="inputValue"></app-demo>
+
+</div>

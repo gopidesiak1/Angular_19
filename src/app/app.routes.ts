@@ -7,17 +7,22 @@ import { PageNotfoundComponent } from './components/page-notfound/page-notfound.
 import { SelectedCourseComponent } from './components/selected-course/selected-course.component';
 import { Component } from '@angular/core';
 import { SelectedCourseDetailComponent } from './components/selected-course-detail/selected-course-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/course',
+        redirectTo: '/home',
         pathMatch: 'full'
     },
     // {
     //     path: 'header',
     //     component: HeaderComponent
     // }, 
+    {
+       path:'home',
+       component:HomeComponent
+    },
     {
         path: 'course',
         component: CourseComponent
