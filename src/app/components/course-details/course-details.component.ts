@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from '../../services/course.service';
 
 
 interface Course { id: number; name: string; tutor: string }
@@ -17,19 +18,36 @@ export class CourseDetailsComponent implements OnInit {
   
   private _router=inject(Router);
   private _activateRoute=inject(ActivatedRoute);
+  private courseService=inject(CourseService);
 
-  coursesList: Course[] = [
-    {id:1,name:'Angular',tutor:'anil'},
-    {id:2,name:'react',tutor:'kumar'},
-    {id:3,name:'java',tutor:'pavan'}, 
-    {id:4,name:'python',tutor:'desi'}, 
-    {id:5,name:'c++',tutor:'gopi'},
-   ]
+  coursesList: any=[];
 
    courseIds: Array<keyof Course> = [];
     courseId: number | undefined;
-  ngOnInit() {
+ /* ngOnInit() {
    this.courseIds = Object.keys(this.coursesList[0]!) as Array<keyof Course>;
+  // console.log(this.courseIds);
+   this._activateRoute.paramMap.subscribe(
+    (params)=>
+    {
+      if(params) {
+        const id = params.get('id');
+        this.courseId = id ? parseInt(id, 10) : undefined;
+      }
+    }
+   )
+  } */
+
+   ngOnInit() {
+
+     this.courseService.getCourseNames().subscribe({
+      next:(res:any)=>{
+        this.coursesList=res;
+         this.courseIds=Object.keys(this.coursesList[0]!)as Array<keyof Course>;
+      }
+     })
+
+   //this.courseIds = Object.keys(this.coursesList[0]!) as Array<keyof Course>;
   // console.log(this.courseIds);
    this._activateRoute.paramMap.subscribe(
     (params)=>

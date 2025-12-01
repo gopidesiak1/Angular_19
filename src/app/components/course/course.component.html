@@ -5,8 +5,10 @@
       Names of Courses
     </div>
     <div class="card-body">
-      @for(course of coursesList;track $index){
-         <div>{{course.name}}</div>
+    @for(course of courseList; track $index){
+      <div>
+        {{ course.name }}
+      </div>
       }
       
     </div>
