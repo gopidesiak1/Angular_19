@@ -7,20 +7,29 @@ import { PageNotfoundComponent } from './components/page-notfound/page-notfound.
 import { SelectedCourseComponent } from './components/selected-course/selected-course.component';
 import { SelectedCourseDetailComponent } from './components/selected-course-detail/selected-course-detail.component';
 import { HomeComponent } from './components/home/home.component';
+import { Home1Component } from './components/home1/home1.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { authGuard } from './gurads/auth.guard';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminSettingsComponent } from './admin/admin-settings/admin-settings.component';
+import { adminGuard } from './gurads/admin.guard';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 export const routes: Routes = [
-    //  {
-    //      path: '',
-    //     redirectTo: '/header',
-    //      pathMatch: 'full'
-    //   },
+     {
+         path: '',
+        redirectTo: '/home1',
+         pathMatch: 'full'
+      },
     //  {
     //      path: 'header',
     //      component: HeaderComponent
     //  }, 
     {
-       path:'home',
-       component:HomeComponent
+       path:'home1',
+       component:Home1Component
     },
     {
         path: 'course',
@@ -52,6 +61,38 @@ export const routes: Routes = [
     {
         path:'selected-course',
         component:SelectedCourseComponent
+    },
+    {
+        path:'login',
+        component:LoginComponent
+    },
+    {
+        path:'dashboard',
+        canActivate:[authGuard],
+        component:DashboardComponent
+    },
+    {
+        path: 'unauthorized',
+        component: UnauthorizedComponent,
+    }, 
+    {
+        path:'admin',
+        canActivateChild:[adminGuard],
+        children:[
+        {
+            path:'dashboard',
+            component:AdminDashboardComponent
+        },
+        {
+            path:'users',
+            component:AdminUsersComponent
+        },
+        {
+            path:'settings',
+            component:AdminSettingsComponent
+        }
+    ]
+        
     },
     {
         path:'**',

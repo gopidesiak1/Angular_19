@@ -1,0 +1,30 @@
+<div class="container">
+    <!-- <div class="row">
+        <div class="d-flex gap-2">
+            <button mat-raised-button color="primary" [routerLink]="['/login']">Login</button>
+            <button mat-raised-button color="warn" [routerLink]="['/dashboard']">dashboard</button>
+        </div>
+    </div> -->
+
+    <div class="container">
+     <h2>canActivateChild Demo</h2>
+       <div class="d-flex gap-3">
+       <button mat-raised-button color="primary"
+
+          (click)="loginAsAdmin()">Admin</button>
+
+          <button mat-raised-button color="accent"
+
+          (click)="loginAsUser()">User</button>
+         <button mat-stroked-button color="warn"
+
+           (click)="logout()">Logout</button>
+   </div>
+  <hr />
+  <nav>
+    <a routerLink="/admin/dashboard">Admin Dashboard</a> |
+    <a routerLink="/admin/users">Users </a> |
+    <a routerLink="/admin/settings">Admin Settings</a>
+  </nav>
+
+</div>
