@@ -6,7 +6,6 @@ import { DocsComponent } from './components/docs/docs.component';
 import { PageNotfoundComponent } from './components/page-notfound/page-notfound.component';
 import { SelectedCourseComponent } from './components/selected-course/selected-course.component';
 import { SelectedCourseDetailComponent } from './components/selected-course-detail/selected-course-detail.component';
-import { HomeComponent } from './components/home/home.component';
 import { Home1Component } from './components/home1/home1.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -16,6 +15,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminSettingsComponent } from './admin/admin-settings/admin-settings.component';
 import { adminGuard } from './gurads/admin.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { BuiltInPipesComponent } from './components/built-in-pipes/built-in-pipes.component';
 
 export const routes: Routes = [
      {
@@ -93,6 +93,10 @@ export const routes: Routes = [
         }
     ]
         
+    },
+    {
+      path:'built-in-pipes',
+      component:BuiltInPipesComponent
     },
     {
         path:'**',
