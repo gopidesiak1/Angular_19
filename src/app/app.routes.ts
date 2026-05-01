@@ -9,16 +9,14 @@ import { SelectedCourseDetailComponent } from './components/selected-course-deta
 import { Home1Component } from './components/home1/home1.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { authGuard } from './gurads/auth.guard';
-import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
-import { AdminSettingsComponent } from './admin/admin-settings/admin-settings.component';
-import { adminGuard } from './gurads/admin.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { BuiltInPipesComponent } from './components/built-in-pipes/built-in-pipes.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-     {
+     /*{
          path: '',
         redirectTo: '/home1',
          pathMatch: 'full'
@@ -101,12 +99,34 @@ export const routes: Routes = [
     {
         path:'**',
         component:PageNotfoundComponent
+    } */
+
+    {
+        path:"",
+        redirectTo:"/home",
+        pathMatch:'full'
+    },
+    {
+        path:'home',
+        component:HomeComponent
+    },
+    {
+        path:'login',
+        component:LoginComponent
+    },
+    {
+        path:'register',
+        component:RegisterComponent
+    },
+    {
+        path:'**',
+        component:PageNotFoundComponent
     }
-
-
 ];
-const routerOptions :ExtraOptions={
-    anchorScrolling:'enabled',
-    scrollOffset:[0,64],
-    useHash:true
-}
+
+// const routerOptions :ExtraOptions={
+//     anchorScrolling:'enabled',
+//     scrollOffset:[0,64],
+//     useHash:true
+// }
+

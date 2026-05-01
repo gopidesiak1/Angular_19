@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { CourseService } from '../../services/course.service';
+
 
 @Component({
   selector: 'app-course',
@@ -11,7 +11,6 @@ import { CourseService } from '../../services/course.service';
 })
 export class CourseComponent implements OnInit {
    
-   private _courseService=inject(CourseService);
 
    courseList:any=[];
 
@@ -20,16 +19,7 @@ export class CourseComponent implements OnInit {
    }
 
    getCourseNames(){
-     this._courseService.getCourseNames().subscribe({
-        next:(res:any)=>{
-          console.log("service called")
-          this.courseList=res;
-          console.log("getting result :",res)
-        },
-        error:(res:any)=>{
-         // console.log("error getting while calling the Error",error)
-        }
-      })
+    
    }
 
 

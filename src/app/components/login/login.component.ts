@@ -4,7 +4,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthserviceService } from '../../services/authservice.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,12 +17,11 @@ export class LoginComponent {
   username:string='';
   password:string='';
 
-  private _authService=inject(AuthserviceService);
   private _router=inject(Router);
 
   onLogIn(){
 
-   const isSuccess =this._authService.login(this.username,this.password);
+   const isSuccess =""
 
    if(isSuccess){
     this._router.navigate(['/dashboard'])

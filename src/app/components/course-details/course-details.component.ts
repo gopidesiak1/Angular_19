@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CourseService } from '../../services/course.service';
 
 
 interface Course { id: number; name: string; tutor: string }
@@ -18,7 +17,6 @@ export class CourseDetailsComponent implements OnInit {
   
   private _router=inject(Router);
   private _activateRoute=inject(ActivatedRoute);
-  private courseService=inject(CourseService);
 
   coursesList: any=[];
 
@@ -40,12 +38,6 @@ export class CourseDetailsComponent implements OnInit {
 
    ngOnInit() {
 
-     this.courseService.getCourseNames().subscribe({
-      next:(res:any)=>{
-        this.coursesList=res;
-         this.courseIds=Object.keys(this.coursesList[0]!)as Array<keyof Course>;
-      }
-     })
 
    //this.courseIds = Object.keys(this.coursesList[0]!) as Array<keyof Course>;
   // console.log(this.courseIds);

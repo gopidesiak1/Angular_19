@@ -13,5 +13,5 @@ export const appConfig: ApplicationConfig = {
       scrollPositionRestoration:'enabled'
      })),
       provideClientHydration(withEventReplay()),
-    provideHttpClient()]
+      provideHttpClient()]
 };
