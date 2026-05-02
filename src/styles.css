@@ -1,9 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
-
 :root{
-    --box-shadow: 1px 1px 3px 1px #746f6f;
-    --myPrimary:#DC3545
+    --box-shadow : 1px 1px 3px 1px #746f6f;
+    --myPrimary : #DC3545;
 }
-*, body{
-    font-family: "sans-serif";
+
+* , body {
+    font-family: "Poppins", sans-serif;
+}
+
+/* .error-snackbar{
+    background-color: #DC3545;
+    color: #fff;
+}
+.success-snackbar{
+    background-color: green;
+    color: white;
+} */
+
+.mat-mdc-snack-bar-container{
+    &.error-snackbar{
+        --mdc-snackbar-container-color: #ac0e0e !important;
+        --mdc-snackbar-supporting-text-color: #fff !important
+    }
+}
+.mat-mdc-snack-bar-container{
+    &.success-snackbar{
+        --mdc-snackbar-container-color: #218503!important;
+        --mdc-snackbar-supporting-text-color: #fff !important
+    }
 }

@@ -1,19 +1,8 @@
 import { ExtraOptions, Routes } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
-import { CourseComponent } from './components/course/course.component';
-import { CourseDetailsComponent } from './components/course-details/course-details.component';
-import { DocsComponent } from './components/docs/docs.component';
-import { PageNotfoundComponent } from './components/page-notfound/page-notfound.component';
-import { SelectedCourseComponent } from './components/selected-course/selected-course.component';
-import { SelectedCourseDetailComponent } from './components/selected-course-detail/selected-course-detail.component';
-import { Home1Component } from './components/home1/home1.component';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
-import { BuiltInPipesComponent } from './components/built-in-pipes/built-in-pipes.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
      /*{
@@ -119,9 +108,14 @@ export const routes: Routes = [
         component:RegisterComponent
     },
     {
+       path: 'admin',
+       loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
+    },
+    {
         path:'**',
         component:PageNotFoundComponent
-    }
+    },
+    
 ];
 
 // const routerOptions :ExtraOptions={

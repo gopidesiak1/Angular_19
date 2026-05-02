@@ -1,32 +1,42 @@
 <mat-toolbar class="header-sm">
-    <span class="spacer"></span>
-    <div class="top-menu">
-
-        <span>
-         <i class="fa fa-phone" aria-hidden="true" style="font-size: 20px;"></i>:(+91) 9542195451
-        </span>
-        <span>About us</span>
-        <span>Contact us</span>
-        <span><button mat-stroked-button color="warn">Login</button></span>
-
-    </div>
-</mat-toolbar>
-
-<mat-toolbar class="header bg-danger">
-   <span class="logo">
- <img src="images/mean.png">
-    </span>
-   <nav class="navbar animate_animated_animate_bounceInleft">
-    <a>Home</a>
-    <a>Men</a>
-    <a>Women</a>
-    <a>kids</a>
-   </nav>
-   <span class="spacer">
+<span class="spacer"></span>
+<div class="top-menu">
     <span>
-        <mat-icon type="button" style="font-size: 30px; margin-right: 2rem; padding-top: 10px; color:
-         azure;" matBadge="?" matBadgeColor="accent" matBadgeOverlap="false" aria-hidden="false">add_shopping_cart</mat-icon>
-   </span>
-   </span>
-
+        <i class="fa fa-phone" aria-hidden="true" style="font-size: 20px;"></i>: (+91) 9182256249
+    </span>
+    <span>About Us</span>
+    <span>contact Us</span>
+    @if(!user){
+        <span><button mat-stroked-button color="warn" [routerLink]="'/login'">Login</button></span>
+    }
+    
+    @else {
+        <span [mat-menu-trigger-for]="userMenu">{{user}}</span>
+    }
+    
+</div>
 </mat-toolbar>
+<mat-toolbar class="header bg-danger">
+    <span class="logo">
+        <img src="images/mean.png">
+    </span>
+    <nav class="navbar animate__animated animate__bounceInLeft"> 
+        <a [routerLink]="'/home'">Home</a>
+        <a [routerLink]="'/men'">Men</a>
+        <a [routerLink]="'/women'">Women</a>
+        <a [routerLink]="'/kids'">Kids</a>
+    </nav>
+    <span class="spacer"></span>
+    <span>
+        <button mat-icon-button>
+            <mat-icon type="button" style="font-size: 30px; margin-right: 2rem; padding-top:10px; color: azure" matBadge="{{cartCount}}" matBadgeColor="accent" matBadgeOverlap="false" aria-hidden="false">add_shopping_cart</mat-icon>
+        </button>
+        
+    </span>
+</mat-toolbar>
+
+
+<mat-menu #userMenu>
+    <li mat-menu-item [routerLink]="'/profile'">Profile</li>
+    <li mat-menu-item (click)="onExit()">Exit</li>
+</mat-menu>

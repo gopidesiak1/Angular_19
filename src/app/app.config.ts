@@ -3,15 +3,11 @@ import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
-     provideRouter(routes,withHashLocation(),
-     withInMemoryScrolling({
-      anchorScrolling:'enabled',
-      scrollPositionRestoration:'enabled'
-     })),
-      provideClientHydration(withEventReplay()),
-      provideHttpClient()]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient(withFetch())]
 };

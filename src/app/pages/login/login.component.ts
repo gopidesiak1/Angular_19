@@ -1,11 +1,83 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AngularMaterialModule } from '../../modules/angular-material/angular-material.module';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { SnackbarService } from '../../services/snackbar.service';
+import { globalProperties } from '../../shared/globalProperties';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { jwtDecode } from 'jwt-decode';
+import { StorageService } from '../../services/storage.service';
+
 
 @Component({
   selector: 'login',
-  imports: [],
+  standalone: true,
+  imports: [AngularMaterialModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  providers: [UserService, SnackbarService,StorageService]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+  timestamp = Date.now()
+public loginForm: any = FormGroup
+responseMsg: any = ''
+payload: any;
+dialog = inject(MatDialog)
+
+constructor(private _formBuilder: FormBuilder,
+  private _userService: UserService,
+  private _snackbar: SnackbarService,
+  private _router: Router,
+  private _storate:StorageService
+){}
+
+ngOnInit(): void {
+  this.loginForm = this._formBuilder.group({
+    email: ['', [Validators.required, Validators.pattern(globalProperties.emailRegx)]],
+    password: ['', [Validators.required]]
+  })
+}
+
+onLogin(){
+  const data = this.loginForm.value
+  this._userService.userLogin(data)
+  .subscribe({
+    next: (res: any) => {
+      const token = res?.token
+      this._storate.setItem('token', token)
+     // this._tokenAuthService.setToken(token)
+      this.payload = jwtDecode(token)
+       console.log(this.payload);
+   if(this.payload.role && this.payload.role === 'admin'){
+        this._router.navigate(['/admin/dashboard'])
+        console.log(this.payload.role)
+      }
+      else{
+        this._router.navigate(['/'])
+      
+      }
+       
+    },
+    error: (err: any) => {
+      if(err.error?.message){
+        this.responseMsg = err.error?.message  
+      }
+      else{
+        this.responseMsg = globalProperties.genericError
+      }
+      this._snackbar.openSnackbar(this.responseMsg, globalProperties.error)
+    }
+  })
+}
+forgotPassword(){
+  const dialogConfig = new MatDialogConfig()
+  dialogConfig.width = '500px'
+  dialogConfig.disableClose = true
+  dialogConfig.autoFocus = true
+}
 
 }
+
+
+
